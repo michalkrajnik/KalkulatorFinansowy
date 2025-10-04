@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kalkulator Kredytowy 2025
 
-## Getting Started
+Responsywny kalkulator kredytowy zbudowany w Next.js 15 (App Router) i Tailwind CSS 4. Projekt jest gotowy do wdrożenia na Vercel i zoptymalizowany pod SEO.
 
-First, run the development server:
+## Wymagania
+- Node.js 18+ (zalecana najnowsza LTS)
+- npm 10+ (instalowany wraz z Node.js)
 
+## Instalacja i uruchomienie lokalne
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+Aplikacja będzie dostępna na `http://localhost:3000`.
+
+## Budowa produkcyjna
+```bash
+npm run build
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploy na Vercel
+1. Zaloguj się do [Vercel](https://vercel.com/) i połącz repozytorium GitHub/GitLab/Bitbucket z projektem.
+2. W ustawieniach projektu ustaw:
+   - **Build Command:** `npm run build`
+   - **Install Command:** `npm install`
+   - **Output Directory:** `.next`
+3. Zainicjuj wdrożenie z terminala (opcjonalnie):
+   ```bash
+   vercel deploy
+   ```
+   Pierwsze uruchomienie poprosi o wybór organizacji/projektu i zapisze konfigurację w `.vercel`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Po każdym pushu na główną gałąź repozytorium Vercel wykona automatyczny deploy.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Podpięcie własnej domeny (kalkulatorfinansowy.com.pl)
+1. W panelu Vercel otwórz projekt → **Settings → Domains** → `Add`.
+2. Dodaj domenę `kalkulatorfinansowy.com.pl`.
+3. W panelu DNS rejestratora ustaw rekordy:
+   - `A` dla `@` (root) kierujący na `76.76.21.21` (adres Vercel).
+   - Opcjonalnie rekord `CNAME` dla `www` wskazujący na `cname.vercel-dns.com`.
+4. Po propagacji DNS (zwykle do 24 h) kliknij „Verify” w Vercel, aby potwierdzić konfigurację.
+5. (Opcjonalnie) W sekcji **Settings → Domains** ustaw `kalkulatorfinansowy.com.pl` jako Primary Domain.
 
-## Learn More
+Vercel automatycznie wygeneruje certyfikat SSL (Let's Encrypt) dla domeny po poprawnej weryfikacji rekordów DNS.
 
-To learn more about Next.js, take a look at the following resources:
+## Przydatne skrypty
+- `npm run lint` – analiza ESLint.
+- `npm run build` – build produkcyjny.
+- `npm run start` – uruchomienie buildu lokalnie.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Struktura katalogów
+- `src/app/` – widoki i layout (App Router).
+- `src/components/` – komponenty współdzielone.
+- `public/` – statyczne zasoby (favicon, og-image).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Licencja
+Projekt dostępny do dalszej adaptacji. Zadbaj o aktualizację treści prawnych (RODO, polityka prywatności) przed publikacją.
