@@ -1,7 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
+import Navbar from "@/components/Navbar";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,11 +19,24 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const siteUrl = "https://kalkulator-kredytowy.vercel.app";
+const siteUrl = "https://kalkulatorfinansowy.com.pl";
 const siteTitle =
-  "Kalkulator kredytowy 2025 – oblicz ratę kredytu hipotecznego";
+  "Kalkulator Finansowy – Oblicz raty kredytu, porównaj oferty banków";
 const siteDescription =
-  "Darmowy kalkulator kredytowy online. Oblicz ratę kredytu hipotecznego lub gotówkowego. Sprawdź oferty banków.";
+  "Kalkulator Finansowy – sprawdź swoją zdolność kredytową, porównaj oferty kredytów i leasingów. Darmowe narzędzia finansowe i aktualne oferty banków.";
+const siteKeywords = [
+  "kalkulator kredytowy",
+  "kredyt hipoteczny",
+  "kredyt gotówkowy",
+  "raty",
+  "porównywarka kredytów",
+  "leasing",
+  "finansowanie",
+  "zdolność kredytowa",
+];
+const themeColor = "#2563eb";
+const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-XXXXXXXXXX";
+const gaEnabled = GA_TRACKING_ID.startsWith("G-") && GA_TRACKING_ID !== "G-XXXXXXXXXX";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -28,24 +45,18 @@ export const metadata: Metadata = {
     template: `%s | ${siteTitle}`,
   },
   description: siteDescription,
-  keywords: [
-    "kalkulator kredytowy 2025",
-    "oblicz ratę kredytu hipotecznego",
-    "kredyt gotówkowy",
-    "porównanie ofert banków",
-    "rrso",
-  ],
-  authors: [{ name: "Kalkulator Kredytowy" }],
+  keywords: siteKeywords,
+  authors: [{ name: "Kalkulator Finansowy" }],
   openGraph: {
     type: "website",
     locale: "pl_PL",
     url: siteUrl,
-    siteName: "Kalkulator Kredytowy",
+    siteName: "Kalkulator Finansowy",
     title: siteTitle,
     description: siteDescription,
     images: [
       {
-        url: "/og-image.svg",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: siteTitle,
@@ -54,10 +65,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    creator: "@kalkulatorkredyt",
     title: siteTitle,
     description: siteDescription,
-    images: ["/og-image.svg"],
+    images: ["/og-image.jpg"],
   },
   alternates: {
     canonical: siteUrl,
@@ -66,6 +76,18 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  other: {
+    author: "Kalkulator Finansowy",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor,
 };
 
 export default function RootLayout({
@@ -78,7 +100,30 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
+        {gaEnabled ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script
+              id="ga4"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${GA_TRACKING_ID}', { anonymize_ip: true });
+                `,
+              }}
+            />
+          </>
+        ) : null}
+        <Navbar />
+        <ScrollProgressBar />
         {children}
+        <ScrollToTopButton />
         <CookieBanner />
       </body>
     </html>
