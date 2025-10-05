@@ -1,7 +1,9 @@
+import Link from "next/link";
 import Script from "next/script";
 import FadeInSection from "@/components/FadeInSection";
 import Footer from "@/components/Footer";
 import LoanCalculator from "@/components/loan-calculator";
+import { articles as articleCollection } from "@/data/articles";
 
 const siteUrl = "https://kalkulatorfinansowy.com.pl";
 
@@ -23,30 +25,6 @@ const creditOffers = [
     description: "RRSO od 8,5%",
     logo: "C",
     href: "#kontakt",
-  },
-];
-
-const articles = [
-  {
-    title: "Jak przygotować się do rozmowy z bankiem",
-    description:
-      "5 kroków, które zwiększą Twoje szanse na atrakcyjne warunki kredytu hipotecznego.",
-    href: "#kontakt",
-    readingTime: "5 minut czytania",
-  },
-  {
-    title: "Na co zwrócić uwagę przy wyborze oferty kredytowej?",
-    description:
-      "Porównujemy marże, RRSO i dodatkowe koszty, aby pomóc Ci wybrać najlepszą propozycję.",
-    href: "#kontakt",
-    readingTime: "6 minut czytania",
-  },
-  {
-    title: "Różnice między ratą stałą a malejącą",
-    description:
-      "Sprawdź, która opcja może być korzystniejsza przy Twoim profilu kredytowym.",
-    href: "#kontakt",
-    readingTime: "4 minuty czytania",
   },
 ];
 
@@ -236,29 +214,30 @@ export default function Home() {
                 Artykuły i poradniki
               </h2>
               <p className="text-base leading-relaxed text-muted sm:text-lg">
-                Tutaj możesz dodawać krótkie artykuły o kredytach, finansach osobistych i planowaniu budżetu domowego.
+                Przeczytaj szczegółowe analizy o kredycie hipotecznym, wykorzystaniu kalkulatora kredytowego,
+                interpretacji RRSO oraz pracy z porównywarką kredytów.
               </p>
             </div>
             <div className="mt-12 grid grid-cols-1 gap-6 px-4 sm:px-10 md:grid-cols-3">
-              {articles.map((article) => (
+              {articleCollection.map((article) => (
                 <article
-                  key={article.title}
+                  key={article.slug}
                   className="flex h-full flex-col justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                 >
                   <div className="space-y-3">
                     <p className="text-xs font-semibold uppercase tracking-wide text-accent">
-                      {article.readingTime}
+                      {article.readingTime} • {article.publishedAt}
                     </p>
                     <h3 className="text-lg font-semibold text-foreground">{article.title}</h3>
-                    <p className="text-sm text-muted">{article.description}</p>
+                    <p className="text-sm text-muted">{article.lead}</p>
                   </div>
-                  <a
-                    href={article.href}
+                  <Link
+                    href={`/artykuly/${article.slug}`}
                     className="inline-flex items-center gap-2 text-sm font-semibold text-cta transition hover:text-cta-dark"
                   >
                     Czytaj więcej
                     <span aria-hidden="true">→</span>
-                  </a>
+                  </Link>
                 </article>
               ))}
             </div>
