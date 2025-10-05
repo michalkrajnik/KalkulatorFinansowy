@@ -1,13 +1,14 @@
 'use client';
 
+import Link from "next/link";
 import { useState } from "react";
 
 const navItems = [
-  { href: "#start", label: "Start" },
-  { href: "#kalkulator", label: "Kalkulator" },
-  { href: "#oferty", label: "Oferty" },
-  { href: "#artykuly", label: "Artykuły" },
-  { href: "#kontakt", label: "Kontakt" },
+  { href: "#start", label: "Start", type: "anchor" },
+  { href: "#kalkulator", label: "Kalkulator", type: "anchor" },
+  { href: "#oferty", label: "Oferty", type: "anchor" },
+  { href: "/artykuly", label: "Artykuły", type: "route" },
+  { href: "#kontakt", label: "Kontakt", type: "anchor" },
 ];
 
 export default function Navbar() {
@@ -28,13 +29,15 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-6 text-sm font-medium text-muted md:flex">
           {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="transition hover:text-cta"
-            >
-              {item.label}
-            </a>
+            item.type === "route" ? (
+              <Link key={item.href} href={item.href} className="transition hover:text-cta">
+                {item.label}
+              </Link>
+            ) : (
+              <a key={item.href} href={item.href} className="transition hover:text-cta">
+                {item.label}
+              </a>
+            )
           ))}
         </div>
 
@@ -56,14 +59,25 @@ export default function Navbar() {
         <div className="border-t border-slate-200 bg-white px-4 py-4 shadow-sm sm:px-6 md:hidden">
           <nav className="flex flex-col gap-3 text-sm font-medium text-foreground">
             {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={handleLinkClick}
-                className="rounded-md px-2 py-2 transition hover:bg-slate-100"
-              >
-                {item.label}
-              </a>
+              item.type === "route" ? (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={handleLinkClick}
+                  className="rounded-md px-2 py-2 transition hover:bg-slate-100"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={handleLinkClick}
+                  className="rounded-md px-2 py-2 transition hover:bg-slate-100"
+                >
+                  {item.label}
+                </a>
+              )
             ))}
           </nav>
         </div>
