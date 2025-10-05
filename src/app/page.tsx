@@ -87,8 +87,6 @@ const faqJsonLd = {
 };
 
 export default function Home() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <>
       <Script
@@ -256,22 +254,25 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      <footer className="border-t border-slate-200 bg-white/90">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-muted sm:px-6 md:px-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-base font-semibold text-foreground">Kalkulator Kredytowy</p>
-          <div className="flex flex-wrap items-center gap-4">
-            <a href="mailto:kontakt@kalkulatorkredytowy.pl" className="transition hover:text-accent">
-              kontakt@kalkulatorkredytowy.pl
+      <footer className="mt-10 border-t border-slate-200 bg-white/90">
+        <div className="mx-auto max-w-6xl px-4 py-6 text-center text-sm text-muted sm:px-6 md:px-8">
+          <p className="font-medium text-foreground">
+            <strong>Kalkulator Finansowy</strong> © 2025 – Oblicz raty, porównaj oferty, wybierz najlepszy kredyt.
+          </p>
+          <p className="mt-1">
+            Kontakt:{" "}
+            <a
+              href="mailto:kalkulatorfinansowy.com.pl@gmail.com"
+              className="text-cta hover:underline"
+            >
+              kalkulatorfinansowy.com.pl@gmail.com
             </a>
-            <a href="#polityka-prywatnosci" className="transition hover:text-accent">
-              Polityka prywatności (w przygotowaniu)
+          </p>
+          <p className="mt-1">
+            <a href="/polityka-prywatnosci" className="text-cta hover:underline">
+              Polityka prywatności
             </a>
-            <a href="#rodo" className="transition hover:text-accent">
-              RODO (w przygotowaniu)
-            </a>
-            <span className="text-xs text-muted">© {currentYear} Wszystkie prawa zastrzeżone.</span>
-          </div>
+          </p>
         </div>
       </footer>
     </>
