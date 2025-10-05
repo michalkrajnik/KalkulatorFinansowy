@@ -4,18 +4,23 @@ import { notFound } from "next/navigation";
 import ArticleLayout from "@/components/ArticleLayout";
 import { articles, articlesBySlug } from "@/data/articles";
 
-type ArticlePageProps = {
-  params: {
-    slug: string;
-  };
+type ArticlePageParams = {
+  slug: string;
 };
+
+type ArticlePageProps = {
+  params: Promise<ArticlePageParams>;
+};
+
+const ogImageUrl = "https://kalkulatorfinansowy.com.pl/og-image.jpg";
 
 export function generateStaticParams() {
   return articles.map(({ slug }) => ({ slug }));
 }
 
-export function generateMetadata({ params }: ArticlePageProps): Metadata {
-  const article = articlesBySlug.get(params.slug);
+export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const article = articlesBySlug.get(slug);
 
   if (!article) {
     return {};
@@ -37,7 +42,7 @@ export function generateMetadata({ params }: ArticlePageProps): Metadata {
       siteName: "Kalkulator Finansowy",
       images: [
         {
-          url: `${new URL("/og-image.jpg", article.canonical).toString()}`,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: article.title,
@@ -48,14 +53,15 @@ export function generateMetadata({ params }: ArticlePageProps): Metadata {
       card: "summary_large_image",
       title: article.title,
       description: article.description,
-      images: ["/og-image.jpg"],
+      images: [ogImageUrl],
     },
     keywords: article.keywords,
   };
 }
 
-export default function ArticlePage({ params }: ArticlePageProps) {
-  const article = articlesBySlug.get(params.slug);
+export default async function ArticlePage({ params }: ArticlePageProps) {
+  const { slug } = await params;
+  const article = articlesBySlug.get(slug);
 
   if (!article) {
     notFound();
@@ -78,7 +84,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
       name: "Kalkulator Finansowy",
       logo: {
         "@type": "ImageObject",
-        url: "https://kalkulatorfinansowy.com.pl/og-image.jpg",
+        url: ogImageUrl,
       },
     },
     mainEntityOfPage: article.canonical,
