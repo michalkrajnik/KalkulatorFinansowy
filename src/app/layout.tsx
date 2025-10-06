@@ -106,6 +106,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
+        <div
+          aria-hidden="true"
+          className="hidden"
+          dangerouslySetInnerHTML={{
+            __html: "<!-- mylead-verification: c353c2d262f8e0944ca9bec650158594 -->",
+          }}
+        />
         {gaEnabled ? (
           <>
             <Script
