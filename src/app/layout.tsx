@@ -97,6 +97,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl">
+      <head>
+        <meta
+          name="mylead-verification"
+          content="c353c2d262f8e0944ca9bec650158594"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
