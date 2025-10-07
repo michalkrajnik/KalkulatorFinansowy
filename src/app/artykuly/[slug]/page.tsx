@@ -82,7 +82,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     author: {
       "@type": "Organization",
       name: "Kalkulator Finansowy",
-      url: "https://kalkulatorfinansowy.com.pl",
+      url: "https://www.kalkulatorfinansowy.com.pl",
     },
     publisher: {
       "@type": "Organization",
