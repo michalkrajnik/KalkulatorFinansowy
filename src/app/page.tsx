@@ -9,22 +9,29 @@ const siteUrl = "https://kalkulatorfinansowy.com.pl";
 
 const creditOffers = [
   {
-    name: "Bank A",
-    description: "RRSO od 8,1%",
-    logo: "A",
-    href: "#kontakt",
+    id: "alior",
+    title: "Alior Bank – kredyt hipoteczny i gotówkowy",
+    description:
+      "Sprawdź aktualną ofertę kredytów Alior Banku. Kalkulator Finansowy uczestniczy w oficjalnym programie partnerskim tej instytucji.",
+    href: "https://savebig.pro/a/qxMXDuXRROsQloE",
+    cta: "Zobacz ofertę Alior Banku",
+    active: true,
   },
   {
-    name: "Bank B",
-    description: "RRSO od 8,3%",
-    logo: "B",
-    href: "#kontakt",
+    id: "partners-1",
+    title: "Nowe współprace w przygotowaniu",
+    description:
+      "Trwają rozmowy z kolejnymi bankami i partnerami finansowymi. Wkrótce pojawią się tu aktualne oferty kredytów i leasingów.",
+    cta: "Wkrótce dostępne",
+    active: false,
   },
   {
-    name: "Bank C",
-    description: "RRSO od 8,5%",
-    logo: "C",
-    href: "#kontakt",
+    id: "partners-2",
+    title: "Nowe współprace w przygotowaniu",
+    description:
+      "Trwają rozmowy z kolejnymi bankami i partnerami finansowymi. Wkrótce pojawią się tu aktualne oferty kredytów i leasingów.",
+    cta: "Wkrótce dostępne",
+    active: false,
   },
 ];
 
@@ -173,31 +180,32 @@ export default function Home() {
                 Oferty banków
               </h2>
               <p className="text-base leading-relaxed text-muted sm:text-lg">
-                W tym miejscu będą wyświetlane aktualne oferty kredytowe z programów afiliacyjnych
-                (np. MyLead, Awin, Bankier) wraz z linkami do szczegółów.
+                Sekcja prezentuje oferty, które przygotowujemy z partnerami bankowymi. Lista rośnie wraz z
+                pozyskaniem kolejnych potwierdzonych współprac.
               </p>
             </div>
             <div className="mt-12 grid grid-cols-1 gap-6 px-4 sm:px-10 md:grid-cols-3">
               {creditOffers.map((offer) => (
                 <article
-                  key={offer.name}
-                  className="flex h-full flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                  key={offer.id}
+                  className="flex h-full flex-col gap-6 rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="flex size-14 items-center justify-center rounded-full bg-accent-soft text-base font-semibold text-accent">
-                      {offer.logo}
-                    </div>
-                    <div>
-                      <p className="text-lg font-semibold text-foreground">{offer.name}</p>
-                      <p className="text-sm text-muted">{offer.description}</p>
-                    </div>
+                  <div className="space-y-3">
+                    <p className="text-lg font-semibold text-foreground">{offer.title}</p>
+                    <p className="text-sm leading-relaxed text-muted">{offer.description}</p>
                   </div>
-                  <a
-                    href={offer.href}
-                    className="inline-flex items-center justify-center rounded-full bg-cta px-4 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-cta-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta"
-                  >
-                    Sprawdź ofertę
-                  </a>
+                  {offer.active ? (
+                    <a
+                      href={offer.href}
+                      className="inline-flex items-center justify-center rounded-full bg-cta px-4 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-cta-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta"
+                    >
+                      {offer.cta}
+                    </a>
+                  ) : (
+                    <span className="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cta/50 px-4 py-3 text-sm font-semibold text-white/80 shadow-md opacity-75">
+                      {offer.cta}
+                    </span>
+                  )}
                 </article>
               ))}
             </div>
@@ -305,6 +313,39 @@ export default function Home() {
           </section>
         </FadeInSection>
       </main>
+      <FadeInSection>
+        <section className="mx-auto mt-16 max-w-4xl rounded-3xl bg-white py-12 text-center shadow-lg shadow-slate-900/10">
+          <div className="space-y-4 px-6 sm:px-12">
+            <h2 className="text-2xl font-semibold text-foreground sm:text-3xl">
+              Aktualne współprace i informacje partnerskie
+            </h2>
+            <p className="text-base leading-relaxed text-muted">
+              Serwis Kalkulator Finansowy współpracuje z wybranymi instytucjami finansowymi w ramach programów
+              partnerskich.
+            </p>
+            <p className="text-base leading-relaxed text-muted">
+              Niektóre linki na stronie są linkami afiliacyjnymi. Klikając w nie możesz zostać przekierowany na
+              stronę partnera, a my możemy otrzymać prowizję za polecenie. Nie wpływa to na koszt usługi dla
+              użytkownika.
+            </p>
+            <p className="text-base font-semibold text-foreground">Aktywna współpraca</p>
+            <p className="text-base leading-relaxed text-muted">
+              Alior Bank prowadzi aktualną kampanię partnerską. Sprawdź szczegóły oferty kredytu:{" "}
+              <a
+                href="https://savebig.pro/a/qxMXDuXRROsQloE"
+                className="font-semibold text-cta hover:underline"
+              >
+                Zobacz ofertę Alior Banku
+              </a>
+              .
+            </p>
+            <p className="text-base leading-relaxed text-muted">
+              Wkrótce pojawią się kolejne współprace z instytucjami finansowymi, bankami, firmami leasingowymi i
+              pożyczkowymi.
+            </p>
+          </div>
+        </section>
+      </FadeInSection>
       <Footer />
     </>
   );
