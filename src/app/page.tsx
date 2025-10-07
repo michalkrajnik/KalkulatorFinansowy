@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import LoanCalculator from "@/components/loan-calculator";
 import { articles as articleCollection } from "@/data/articles";
 
-const siteUrl = "https://kalkulatorfinansowy.com.pl";
+const siteUrl = "https://www.kalkulatorfinansowy.com.pl";
 
 const creditOffers = [
   {

@@ -19,21 +19,27 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const siteUrl = "https://kalkulatorfinansowy.com.pl";
-const siteTitle =
-  "Kalkulator Finansowy – Oblicz raty kredytu, porównaj oferty banków";
-const siteDescription =
-  "Kalkulator Finansowy – sprawdź swoją zdolność kredytową, porównaj oferty kredytów i leasingów. Darmowe narzędzia finansowe i aktualne oferty banków.";
-const siteKeywords = [
-  "kalkulator kredytowy",
-  "kredyt hipoteczny",
-  "kredyt gotówkowy",
-  "raty",
-  "porównywarka kredytów",
-  "leasing",
-  "finansowanie",
-  "zdolność kredytowa",
-];
+const siteUrl = "https://www.kalkulatorfinansowy.com.pl";
+const sectionMetaTags: Record<string, string> = {
+  "section-start-title": "Start – Kalkulator Finansowy",
+  "section-start-description":
+    "Wprowadzenie do serwisu z informacjami o narzędziach finansowych i nowościach.",
+  "section-kalkulator-title": "Kalkulator kredytowy – oblicz ratę",
+  "section-kalkulator-description":
+    "Sekcja kalkulatora kredytowego, w której szybko sprawdzisz wysokość rat i koszty kredytu.",
+  "section-oferty-title": "Oferty banków – aktualne propozycje finansowania",
+  "section-oferty-description":
+    "Zestawienie współprac i ofert kredytowych, które pomagają wybrać najlepsze finansowanie.",
+  "section-artykuly-title": "Artykuły i poradniki finansowe",
+  "section-artykuly-description":
+    "Baza artykułów o kredytach, budżecie domowym i świadomym planowaniu finansów.",
+  "section-kontakt-title": "Kontakt z Kalkulatorem Finansowym",
+  "section-kontakt-description":
+    "Informacje kontaktowe i możliwość bezpośredniego wysłania zapytania.",
+  "section-faq-title": "Najczęstsze pytania o kredyty i finanse",
+  "section-faq-description":
+    "Sekcja FAQ z odpowiedziami na najczęstsze pytania o kredyty hipoteczne i gotówkowe.",
+};
 const themeColor = "#2563eb";
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-XXXXXXXXXX";
 const gaEnabled = GA_TRACKING_ID.startsWith("G-") && GA_TRACKING_ID !== "G-XXXXXXXXXX";
@@ -41,32 +47,43 @@ const gaEnabled = GA_TRACKING_ID.startsWith("G-") && GA_TRACKING_ID !== "G-XXXXX
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: siteTitle,
-    template: `%s | ${siteTitle}`,
+    default: "Kalkulator Finansowy – Oblicz raty kredytu i porównaj oferty banków",
+    template: "%s | Kalkulator Finansowy",
   },
-  description: siteDescription,
-  keywords: siteKeywords,
+  description:
+    "Darmowy kalkulator kredytowy. Oblicz raty kredytu hipotecznego i gotówkowego. Porównaj oferty banków i znajdź najlepsze finansowanie dla siebie.",
+  keywords: [
+    "kalkulator kredytowy",
+    "kredyt hipoteczny",
+    "rata",
+    "RRSO",
+    "zdolność kredytowa",
+    "porównywarka kredytów",
+    "finanse osobiste",
+  ],
   authors: [{ name: "Kalkulator Finansowy" }],
   openGraph: {
     type: "website",
     locale: "pl_PL",
     url: siteUrl,
     siteName: "Kalkulator Finansowy",
-    title: siteTitle,
-    description: siteDescription,
+    title: "Kalkulator Finansowy – oblicz raty i porównaj oferty banków",
+    description:
+      "Kalkulator finansowy online – sprawdź raty, RRSO i oferty kredytowe w jednym miejscu.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: siteTitle,
+        alt: "Kalkulator Finansowy – porównaj kredyty i raty",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: siteTitle,
-    description: siteDescription,
+    title: "Kalkulator Finansowy – oblicz raty kredytu i porównaj oferty banków",
+    description:
+      "Sprawdź swoją zdolność kredytową, porównaj oferty i oblicz raty kredytu hipotecznego online.",
     images: ["/og-image.jpg"],
   },
   alternates: {
@@ -78,6 +95,7 @@ export const metadata: Metadata = {
   },
   other: {
     author: "Kalkulator Finansowy",
+    ...sectionMetaTags,
   },
   icons: {
     icon: "/favicon.ico",

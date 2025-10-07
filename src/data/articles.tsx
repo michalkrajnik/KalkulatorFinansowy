@@ -4,6 +4,8 @@ export type ArticleData = {
   slug: string;
   title: string;
   description: string;
+  metaTitle?: string;
+  metaDescription?: string;
   lead: string;
   publishedAt: string;
   publishedAtIso: string;
@@ -13,7 +15,7 @@ export type ArticleData = {
   content: () => ReactNode;
 };
 
-const baseUrl = "https://kalkulatorfinansowy.com.pl";
+const baseUrl = "https://www.kalkulatorfinansowy.com.pl";
 
 export const articles: ArticleData[] = [
   {

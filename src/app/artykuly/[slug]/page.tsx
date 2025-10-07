@@ -12,7 +12,7 @@ type ArticlePageProps = {
   params: Promise<ArticlePageParams>;
 };
 
-const ogImageUrl = "https://kalkulatorfinansowy.com.pl/og-image.jpg";
+const ogImageUrl = "https://www.kalkulatorfinansowy.com.pl/og-image.jpg";
 
 export function generateStaticParams() {
   return articles.map(({ slug }) => ({ slug }));
@@ -26,16 +26,19 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     return {};
   }
 
+  const metaTitle = article.metaTitle ?? article.title;
+  const metaDescription = article.metaDescription ?? article.description;
+
   return {
-    title: article.title,
-    description: article.description,
+    title: metaTitle,
+    description: metaDescription,
     alternates: {
       canonical: article.canonical,
     },
     openGraph: {
       type: "article",
-      title: article.title,
-      description: article.description,
+      title: metaTitle,
+      description: metaDescription,
       url: article.canonical,
       publishedTime: article.publishedAtIso,
       authors: ["Kalkulator Finansowy"],
@@ -45,14 +48,14 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
           url: ogImageUrl,
           width: 1200,
           height: 630,
-          alt: article.title,
+          alt: metaTitle,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: article.title,
-      description: article.description,
+      title: metaTitle,
+      description: metaDescription,
       images: [ogImageUrl],
     },
     keywords: article.keywords,
@@ -67,11 +70,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
+  const metaDescription = article.metaDescription ?? article.description;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: article.title,
-    description: article.description,
+    description: metaDescription,
     datePublished: article.publishedAtIso,
     dateModified: article.publishedAtIso,
     author: {
