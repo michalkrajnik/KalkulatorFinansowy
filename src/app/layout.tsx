@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
@@ -115,17 +114,13 @@ export default function RootLayout({
     <html lang="pl">
       <head>
         {/* Google tag (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-Z133B28LTJ"
-          strategy="beforeInteractive"
-          async
-        />
-        <Script id="ga4-inline" strategy="beforeInteractive">
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z133B28LTJ"></script>
+        <script>
           {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-Z133B28LTJ');`}
-        </Script>
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z133B28LTJ');`}
+        </script>
         <meta
           name="google-site-verification"
           content="tm-JX38XnlHKfmiQ4H-iPs82Np-ftKcDgTnUEBfpqLI"
