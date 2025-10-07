@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 
 const navItems = [
-  { href: "#start", label: "Start", type: "anchor" },
-  { href: "#kalkulator", label: "Kalkulator", type: "anchor" },
-  { href: "#oferty", label: "Oferty", type: "anchor" },
-  { href: "/artykuly", label: "Artykuły", type: "route" },
-  { href: "#kontakt", label: "Kontakt", type: "anchor" },
+  { href: "/#start", label: "Start" },
+  { href: "/#kalkulator", label: "Kalkulator" },
+  { href: "/#oferty", label: "Oferty" },
+  { href: "/#artykuly", label: "Artykuły" },
+  { href: "/#kontakt", label: "Kontakt" },
 ];
 
 export default function Navbar() {
@@ -20,24 +20,19 @@ export default function Navbar() {
   return (
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 md:px-8">
-        <a
-          href="#start"
+        <Link
+          href="/#start"
           className="text-base font-semibold tracking-tight text-foreground transition hover:text-cta sm:text-lg"
+          onClick={handleLinkClick}
         >
           Kalkulator Finansowy
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-6 text-sm font-medium text-muted md:flex">
           {navItems.map((item) => (
-            item.type === "route" ? (
-              <Link key={item.href} href={item.href} className="transition hover:text-cta">
-                {item.label}
-              </Link>
-            ) : (
-              <a key={item.href} href={item.href} className="transition hover:text-cta">
-                {item.label}
-              </a>
-            )
+            <Link key={item.href} href={item.href} className="transition hover:text-cta">
+              {item.label}
+            </Link>
           ))}
         </div>
 
@@ -59,25 +54,14 @@ export default function Navbar() {
         <div className="border-t border-slate-200 bg-white px-4 py-4 shadow-sm sm:px-6 md:hidden">
           <nav className="flex flex-col gap-3 text-sm font-medium text-foreground">
             {navItems.map((item) => (
-              item.type === "route" ? (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={handleLinkClick}
-                  className="rounded-md px-2 py-2 transition hover:bg-slate-100"
-                >
-                  {item.label}
-                </Link>
-              ) : (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={handleLinkClick}
-                  className="rounded-md px-2 py-2 transition hover:bg-slate-100"
-                >
-                  {item.label}
-                </a>
-              )
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={handleLinkClick}
+                className="rounded-md px-2 py-2 transition hover:bg-slate-100"
+              >
+                {item.label}
+              </Link>
             ))}
           </nav>
         </div>

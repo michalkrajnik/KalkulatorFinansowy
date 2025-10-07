@@ -99,6 +99,10 @@ export default function RootLayout({
     <html lang="pl">
       <head>
         <meta
+          name="google-site-verification"
+          content="wCpPkfXLJIp6bZS0Z8IYJEld9hOeAac78mpPQEhl8jQ"
+        />
+        <meta
           name="mylead-verification"
           content="c353c2d262f8e0944ca9bec650158594"
         />
