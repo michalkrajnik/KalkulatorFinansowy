@@ -100,7 +100,7 @@ export default function RootLayout({
       <head>
         <meta
           name="google-site-verification"
-          content="wCpPkfXLJIp6bZS0Z8IYJEld9hOeAac78mpPQEhl8jQ"
+          content="tm-JX38XnlHKfmiQ4H-iPs82Np-ftKcDgTnUEBfpqLI"
         />
         <meta
           name="mylead-verification"
