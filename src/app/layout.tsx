@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
@@ -41,8 +40,6 @@ const sectionMetaTags: Record<string, string> = {
     "Sekcja FAQ z odpowiedziami na najczęstsze pytania o kredyty hipoteczne i gotówkowe.",
 };
 const themeColor = "#2563eb";
-const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-XXXXXXXXXX";
-const gaEnabled = GA_TRACKING_ID.startsWith("G-") && GA_TRACKING_ID !== "G-XXXXXXXXXX";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -116,6 +113,18 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z133B28LTJ"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z133B28LTJ');
+`,
+          }}
+        />
         <meta
           name="google-site-verification"
           content="tm-JX38XnlHKfmiQ4H-iPs82Np-ftKcDgTnUEBfpqLI"
@@ -135,26 +144,6 @@ export default function RootLayout({
             __html: "<!-- mylead-verification: c353c2d262f8e0944ca9bec650158594 -->",
           }}
         />
-        {gaEnabled ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script
-              id="ga4"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${GA_TRACKING_ID}', { anonymize_ip: true });
-                `,
-              }}
-            />
-          </>
-        ) : null}
         <Navbar />
         <ScrollProgressBar />
         {children}
