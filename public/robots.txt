@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.kalkulatorfinansowy.com.pl/sitemap.xml
+Host: https://www.kalkulatorfinansowy.com.pl
+
+# Ten plik informuje roboty wyszukiwarek, że mogą indeksować całą stronę.
+# Zawiera odwołanie do mapy witryny sitemap.xml, która opisuje strukturę witryny.
