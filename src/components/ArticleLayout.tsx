@@ -33,7 +33,7 @@ export default function ArticleLayout({
         </h1>
         <p className="text-base text-muted sm:text-lg">{lead}</p>
       </header>
-      <div className="prose prose-slate max-w-none leading-7 text-foreground prose-headings:text-foreground prose-a:text-cta prose-a:no-underline hover:prose-a:underline dark:prose-invert">
+      <div className="prose prose-slate max-w-none leading-7 text-foreground prose-headings:tracking-tight prose-h2:mt-10 prose-h2:text-accent prose-h2:font-semibold prose-h3:mt-8 prose-h3:text-accent prose-h3:font-semibold prose-p:mt-6 first:prose-p:mt-0 prose-ul:mt-6 prose-ul:list-disc prose-ul:pl-5 prose-li:mt-2 prose-a:text-cta prose-a:no-underline hover:prose-a:underline dark:prose-invert">
         {children}
       </div>
       <footer className="pt-6">
