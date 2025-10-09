@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 export type ArticleData = {
@@ -891,6 +892,94 @@ export const articles: ArticleData[] = [
         </p>
         <p>
           Wybierz wariant zgodny z budżetem i celami.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "refinansowanie-kredytu",
+    title: "Refinansowanie kredytu – kiedy się opłaca?",
+    description:
+      "Dowiedz się, jak refinansowanie kredytu może obniżyć raty i poprawić warunki spłaty.",
+    lead:
+      "Refinansowanie kredytu pozwala przenieść zadłużenie do banku, który oferuje niższą ratę lub lepsze warunki.",
+    publishedAt: "10 października 2025",
+    publishedAtIso: "2025-10-10",
+    readingTime: "6 minut czytania",
+    canonical: `${baseUrl}/artykuly/refinansowanie-kredytu`,
+    keywords: [
+      "refinansowanie kredytu",
+      "niższa rata",
+      "kredyt hipoteczny",
+      "koszty kredytu",
+      "porównanie banków",
+    ],
+    content: () => (
+      <>
+        <p>
+          Refinansowanie kredytu oznacza, że nowy bank spłaca stare zobowiązanie i proponuje nową umowę z
+          niższą ratą albo krótszym okresem spłaty.
+        </p>
+        <p>
+          Warto sprawdzić, jak zmieniło się oprocentowanie rynkowe i czy różnica pokryje ewentualne
+          prowizje.
+        </p>
+        <p>
+          Zanim podejmiesz decyzję, policz raty w kalkulatorze kredytowym i porównaj co najmniej dwie oferty.
+        </p>
+        <p>
+          Zwróć uwagę na koszty ubezpieczenia, prowizję za wcześniejszą spłatę oraz dodatkowe produkty, które
+          bank dolicza do pakietu.
+        </p>
+        <p>
+          Więcej o analizie kosztów znajdziesz w artykule{" "}
+          <Link href="/artykuly/jak-bank-liczy-rrso">Jak bank liczy RRSO i co to oznacza?</Link>.
+        </p>
+        <p>
+          <Link href="/#kalkulator">Oblicz ratę kredytu</Link>
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "jak-bank-liczy-rrso",
+    title: "Jak bank liczy RRSO i co to oznacza?",
+    description:
+      "Poznaj prostym językiem, jak działa RRSO i jak pomaga porównywać kredyty.",
+    lead:
+      "RRSO pokazuje pełny koszt kredytu, więc ułatwia wybór oferty z najniższym obciążeniem.",
+    publishedAt: "10 października 2025",
+    publishedAtIso: "2025-10-10",
+    readingTime: "5 minut czytania",
+    canonical: `${baseUrl}/artykuly/jak-bank-liczy-rrso`,
+    keywords: [
+      "RRSO",
+      "rzeczywista roczna stopa oprocentowania",
+      "koszt kredytu",
+      "porównanie kredytów",
+      "kalkulator kredytowy",
+    ],
+    content: () => (
+      <>
+        <p>
+          RRSO, czyli rzeczywista roczna stopa oprocentowania, obejmuje oprocentowanie, prowizje i opłaty
+          dodatkowe.
+        </p>
+        <p>
+          Dzięki temu wskaźnikowi widzisz, ile kredyt kosztuje w skali roku niezależnie od wysokości raty.
+        </p>
+        <p>
+          Porównując oferty banków, patrz właśnie na RRSO, bo niższa wartość oznacza tańszy kredyt.
+        </p>
+        <p>
+          Uzupełnij analizę o symulacje w kalkulatorze kredytowym, aby sprawdzić ratę i harmonogram spłaty.
+        </p>
+        <p>
+          Jeśli chcesz dodatkowo obniżyć koszty, zajrzyj do artykułu{" "}
+          <Link href="/artykuly/refinansowanie-kredytu">Refinansowanie kredytu – kiedy się opłaca?</Link>.
+        </p>
+        <p>
+          <Link href="/#kalkulator">Oblicz ratę kredytu</Link>
         </p>
       </>
     ),

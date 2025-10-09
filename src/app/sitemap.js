@@ -1,7 +1,9 @@
+import { articles } from "@/data/articles";
+
 export default async function sitemap() {
   const baseUrl = "https://www.kalkulatorfinansowy.com.pl";
 
-  return [
+  const staticEntries = [
     {
       url: `${baseUrl}/`,
       lastModified: new Date(),
@@ -39,4 +41,13 @@ export default async function sitemap() {
       priority: 0.6,
     },
   ];
+
+  const articleEntries = articles.map((article) => ({
+    url: article.canonical,
+    lastModified: article.publishedAtIso ? new Date(article.publishedAtIso) : new Date(),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticEntries, ...articleEntries];
 }

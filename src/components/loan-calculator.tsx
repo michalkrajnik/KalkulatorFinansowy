@@ -86,31 +86,51 @@ function calculateDecliningSchedule(
   return { firstPayment, schedule };
 }
 
-export function LoanCalculator() {
-  const [loanAmount, setLoanAmount] = useState(450000);
-  const [interestRate, setInterestRate] = useState(6.5);
-  const [years, setYears] = useState(25);
-  const [rateType, setRateType] = useState<RateType>("stala");
+function parseNumberInput(value: string): number | null {
+  if (value.trim() === "") {
+    return null;
+  }
 
+  const normalized = value.replace(",", ".");
+  const parsed = Number(normalized);
+
+  if (!Number.isFinite(parsed)) {
+    return null;
+  }
+
+  return parsed;
+}
+
+export function LoanCalculator() {
+  const [loanAmount, setLoanAmount] = useState("450000");
+  const [interestRate, setInterestRate] = useState("6.5");
+  const [years, setYears] = useState("25");
+  const [rateType, setRateType] = useState<RateType>("stala");
   const [result, setResult] = useState<CalculationResult | null>(null);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const amountValue = parseNumberInput(loanAmount);
+    const rateValue = parseNumberInput(interestRate);
+    const yearsValue = parseNumberInput(years);
 
-    const sanitizedAmount = Number.isFinite(loanAmount) ? loanAmount : 0;
-    const sanitizedRate = Number.isFinite(interestRate) ? interestRate : 0;
-    const sanitizedYears = Number.isFinite(years) ? years : 0;
-
-    if (sanitizedAmount <= 0 || sanitizedYears <= 0) {
+    if (
+      amountValue === null ||
+      yearsValue === null ||
+      rateValue === null ||
+      amountValue <= 0 ||
+      yearsValue <= 0 ||
+      rateValue < 0
+    ) {
       setResult(null);
       return;
     }
 
     if (rateType === "stala") {
       const monthlyPayment = calculateAnnuityPayment(
-        sanitizedAmount,
-        sanitizedRate,
-        sanitizedYears,
+        amountValue,
+        rateValue,
+        yearsValue,
       );
 
       setResult({
@@ -121,9 +141,9 @@ export function LoanCalculator() {
     }
 
     const { firstPayment, schedule } = calculateDecliningSchedule(
-      sanitizedAmount,
-      sanitizedRate,
-      sanitizedYears,
+      amountValue,
+      rateValue,
+      yearsValue,
     );
 
     setResult({
@@ -133,7 +153,14 @@ export function LoanCalculator() {
     });
   };
 
-  const totalMonths = Math.max(Math.round(years * 12), 1);
+  const amountValue = parseNumberInput(loanAmount);
+  const rateValue = parseNumberInput(interestRate);
+  const yearsValue = parseNumberInput(years);
+
+  const safeAmount = amountValue !== null ? Math.max(amountValue, 0) : 0;
+  const safeRate = rateValue !== null && rateValue >= 0 ? rateValue : 0;
+  const totalMonths =
+    yearsValue !== null && yearsValue > 0 ? Math.round(yearsValue * 12) : 0;
   const decliningResult = result?.type === "malejaca" ? result : null;
 
   return (
@@ -157,7 +184,7 @@ export function LoanCalculator() {
                 min={10000}
                 step={1000}
                 value={loanAmount}
-                onChange={(event) => setLoanAmount(Number(event.target.value))}
+                onChange={(event) => setLoanAmount(event.target.value)}
                 className="w-full bg-transparent text-base font-medium text-foreground outline-none"
                 aria-describedby="loan-amount-hint"
                 required
@@ -178,7 +205,7 @@ export function LoanCalculator() {
                 max={20}
                 step={0.1}
                 value={interestRate}
-                onChange={(event) => setInterestRate(Number(event.target.value))}
+                onChange={(event) => setInterestRate(event.target.value)}
                 className="w-full bg-transparent text-base font-medium text-foreground outline-none"
                 aria-describedby="interest-hint"
                 required
@@ -200,7 +227,7 @@ export function LoanCalculator() {
                 max={40}
                 step={1}
                 value={years}
-                onChange={(event) => setYears(Number(event.target.value))}
+                onChange={(event) => setYears(event.target.value)}
                 className="w-full bg-transparent text-base font-medium text-foreground outline-none"
                 aria-describedby="years-hint"
                 required
@@ -269,13 +296,13 @@ export function LoanCalculator() {
           <div className="flex items-center justify-between">
             <dt>Kwota kredytu</dt>
             <dd className="font-semibold text-foreground">
-              {currencyFormatter.format(Math.max(loanAmount, 0))}
+              {currencyFormatter.format(safeAmount)}
             </dd>
           </div>
           <div className="flex items-center justify-between">
             <dt>Oprocentowanie</dt>
             <dd className="font-semibold text-foreground">
-              {percentFormatter.format(Math.max(interestRate, 0) / 100)}
+              {percentFormatter.format(Math.max(safeRate, 0) / 100)}
             </dd>
           </div>
           <div className="flex items-center justify-between">

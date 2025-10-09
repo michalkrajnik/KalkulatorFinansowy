@@ -2,13 +2,7 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "kalkulatorfinansowy.com.pl"
-        }
-      ],
-      "destination": "https://www.kalkulatorfinansowy.com.pl/:1",
+      "destination": "https://kalkulatorfinansowy.com.pl/:1",
       "permanent": true
     }
   ]

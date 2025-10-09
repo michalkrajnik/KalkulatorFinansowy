@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
@@ -48,15 +49,13 @@ export const metadata: Metadata = {
     template: "%s | Kalkulator Finansowy",
   },
   description:
-    "Darmowy kalkulator kredytowy. Oblicz raty kredytu hipotecznego i gotówkowego. Porównaj oferty banków i znajdź najlepsze finansowanie dla siebie.",
+    "Kalkulator kredytowy online. Oblicz raty kredytu hipotecznego lub gotówkowego i porównaj oferty banków w kilka sekund.",
   keywords: [
     "kalkulator kredytowy",
     "kredyt hipoteczny",
-    "rata",
-    "RRSO",
-    "zdolność kredytowa",
+    "kredyt gotówkowy",
     "porównywarka kredytów",
-    "finanse osobiste",
+    "RRSO",
   ],
   authors: [{ name: "Kalkulator Finansowy" }],
   openGraph: {
@@ -113,14 +112,19 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z133B28LTJ"></script>
-        <script>
-          {`window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-Z133B28LTJ');`}
-        </script>
+        <link rel="canonical" href="https://www.kalkulatorfinansowy.com.pl" />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-Z133B28LTJ"
+          strategy="afterInteractive"
+        />
+        <Script strategy="afterInteractive" id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-Z133B28LTJ');
+          `}
+        </Script>
         <meta
           name="google-site-verification"
           content="tm-JX38XnlHKfmiQ4H-iPs82Np-ftKcDgTnUEBfpqLI"

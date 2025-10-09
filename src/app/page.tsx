@@ -6,6 +6,7 @@ import LoanCalculator from "@/components/loan-calculator";
 import { articles as articleCollection } from "@/data/articles";
 
 const siteUrl = "https://www.kalkulatorfinansowy.com.pl";
+const isAliorCampaignActive = Boolean(process.env.MYLEAD_API_KEY);
 
 const creditOffers = [
   {
@@ -15,7 +16,7 @@ const creditOffers = [
       "Sprawdź aktualną ofertę kredytów Alior Banku. Kalkulator Finansowy uczestniczy w oficjalnym programie partnerskim tej instytucji.",
     href: "https://savebig.pro/a/qxMXDuXRROsQloE",
     cta: "Zobacz ofertę Alior Banku",
-    active: true,
+    active: isAliorCampaignActive,
   },
   {
     id: "partners-1",
@@ -160,8 +161,8 @@ export default function Home() {
                 Kalkulator kredytowy
               </h2>
               <p className="text-base leading-relaxed text-muted sm:text-lg">
-                Tutaj umieść kalkulator kredytowy – użytkownik wprowadza kwotę, okres i oprocentowanie,
-                a skrypt oblicza ratę na podstawie wprowadzonych parametrów.
+                Wpisz kwotę kredytu, oprocentowanie i okres spłaty, a nasz kalkulator natychmiast pokaże
+                szacunkową ratę dla wybranych parametrów.
               </p>
               <div className="mt-10">
                 <LoanCalculator />
@@ -267,7 +268,7 @@ export default function Home() {
                 >
                   kalkulatorfinansowy.com.pl@gmail.com
                 </a>
-                . Chętnie doradzimy i odpowiemy na Twoje wątpliwości związane z finansami.
+                .
               </p>
               <div className="flex items-center justify-center">
                 <a
