@@ -2,8 +2,8 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
-      "source": "/(.*)",
-      "destination": "https://kalkulatorfinansowy.com.pl/:1",
+      "source": "/:path*",
+      "destination": "https://kalkulatorfinansowy.com.pl/:path*",
       "permanent": true
     }
   ],
