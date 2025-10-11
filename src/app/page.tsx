@@ -117,9 +117,6 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <main className="mx-auto max-w-6xl space-y-16 px-4 pb-16 pt-32 sm:px-6 md:px-8">
-        <div className="text-center text-sm font-semibold uppercase tracking-wide text-accent">
-          test
-        </div>
         <FadeInSection>
           <section
             id="start"
